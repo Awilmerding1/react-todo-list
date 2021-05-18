@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import Lists from './Lists'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {showLists: true}
+  }
+
+  toggleLists() {
+    this.setState(function(prevState) {return {showLists: !prevState.showLists}})
+    this.setState(prevState => ({showLists: !prevState.showLists}))
+    // this.setState({showLists: !this.state.showLists})
+    // this.setState({showLists: !this.state.showLists})
+  }
+
+  render() {
+    return (
+      <div>
+          <button onClick={(e) => this.toggleLists()}>Toggle Lists</button>
+        {this.state.showLists ? <Lists /> : null}
+      </div>
+    )
+
+  }
+
 }
 
-export default App;
+
+
+
+
+export default App
