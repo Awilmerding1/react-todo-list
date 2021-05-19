@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-class ListForm extends React.Component {
+export default class ListForm extends React.Component {
 
   constructor(props) {
     super(props)
@@ -12,27 +12,23 @@ class ListForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const body = {list: this.state}
-    // debugger
     fetch("http://localhost:3001/lists", {
       method: "POST",
       headers: {Accept: "application/json", "Content-Type": "application/json"},
       body: JSON.stringify(body)
     }).then(r => r.json())
     .then(list => this.props.sendData(list))
-    // this.props.sendData(this.state)
     this.setState({name: ""})
   }
 
-  handleChange(e) {
-      this.setState({[e.target.name]: e.target.value})
-  }
+  handleChange = (e) => {this.setState({[e.target.name]: e.target.value})}
 
 
-  render() {
-    // console.log("listform render")
+  render = () => {
+
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text" onChange={this.handleChange.bind(this)} value={this.state.name} name="name"/>
+        <input type="text" onChange={this.handleChange} value={this.state.name} name="name"/>
 
         <input type="submit"/>
       </form>
@@ -40,5 +36,3 @@ class ListForm extends React.Component {
   }
 
 }
-
-export default ListForm

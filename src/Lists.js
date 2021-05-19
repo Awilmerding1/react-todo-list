@@ -1,14 +1,13 @@
-import React from 'react'
+import React, {Component, Fragment} from 'react'
 import List from './List'
 import ListForm from './ListForm'
 
 
-class Lists extends React.Component {
+class Lists extends Component {
 
 
   constructor() {
     super()
-    console.log("constructor")
     this.state = {
         lists: []
       }
@@ -16,30 +15,13 @@ class Lists extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
     fetch("http://localhost:3001/lists")
     .then(function(response) {
       return response.json()
     })
     .then((listsArray) => {
-      // console.log(listsArray)
       this.setState({lists: listsArray})
     })
-  }
-
-  //
-  //
-  componentDidUpdate(prevProps, prevState, snapshot) {
-
-    console.log('componentDidUpdate')
-    // if (prevState.lists.length % 2 === 0) {
-    //   this.setState({tracker: prevState.tracker+=1})
-    // }
-  }
-  // //
-  componentWillUnmount() {
-
-    console.log('componentWillUnmount')
   }
 
 
@@ -49,18 +31,21 @@ class Lists extends React.Component {
       })
   }
 
+  handleClick(){
+    this.setState({lists: this.state.lists})
+  }
+
+
 
   render() {
-    console.log("render", this.state)
       return (
-        <div>
-          <p>ID VALUE: {this.state.id}</p>
-          <p>TRACKER: {this.state.tracker}</p>
+        <>
+          <button onClick={this.handleClick.bind(this)}>Click me!</button>
           <ListForm sendData={this.updateState}/>
           <ul>
-            {this.state.lists.map((list, i) => <List key={i} list={list} />)}
+            {this.state.lists.map((list, i) => <Fragment key={i}><List list={list}/></Fragment>)}
           </ul>
-        </div>
+        </>
       )
   }
 
