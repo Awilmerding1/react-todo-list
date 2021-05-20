@@ -1,7 +1,7 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
-
-export default class ListForm extends React.Component {
+class ListForm extends React.Component {
 
   constructor(props) {
     super(props)
@@ -19,6 +19,7 @@ export default class ListForm extends React.Component {
     }).then(r => r.json())
     .then(list => this.props.sendData(list))
     this.setState({name: ""})
+    this.props.history.push("/lists")
   }
 
   handleChange = (e) => {this.setState({[e.target.name]: e.target.value})}
@@ -36,3 +37,5 @@ export default class ListForm extends React.Component {
   }
 
 }
+
+export default withRouter(ListForm)
