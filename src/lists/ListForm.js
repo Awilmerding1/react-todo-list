@@ -11,13 +11,14 @@ class ListForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const body = {list: this.state}
-    fetch("http://localhost:3001/lists", {
-      method: "POST",
-      headers: {Accept: "application/json", "Content-Type": "application/json"},
-      body: JSON.stringify(body)
-    }).then(r => r.json())
-    .then(list => this.props.sendData(list))
+    // const body = {list: this.state}
+    // fetch("http://localhost:3001/lists", {
+    //   method: "POST",
+    //   headers: {Accept: "application/json", "Content-Type": "application/json"},
+    //   body: JSON.stringify(body)
+    // }).then(r => r.json())
+    // .then(list => this.props.sendData(list))
+
     this.setState({name: ""})
     this.props.history.push("/lists")
   }

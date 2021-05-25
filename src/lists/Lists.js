@@ -3,9 +3,11 @@ import List from './List'
 import ListForm from './ListForm'
 import {Redirect} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+
+
 class Lists extends Component {
-
-
 
 
   render() {
@@ -13,10 +15,8 @@ class Lists extends Component {
       return (
 
         <>
-
-
           <ul>
-            {this.props.lists.map((list, i) => <li><Link to={`/lists/${list.id}`} >{list.name}</Link></li> )}
+            {this.props.lists && this.props.lists.map((list, i) => <li><Link to={`/lists/${list.id}`} >{list.name}</Link></li> )}
           </ul>
         </>
       )
@@ -24,4 +24,9 @@ class Lists extends Component {
 
 }
 
-export default Lists
+function mapStateToProps(state) {
+  return {lists: state.lists}
+}
+
+
+export default connect(mapStateToProps)(Lists)

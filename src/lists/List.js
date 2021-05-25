@@ -1,4 +1,4 @@
-
+import {useSelector} from 'react-redux'
 // class List extends React.Component {
 //
 //
@@ -17,7 +17,8 @@
 
 export default function List(props) {
   // const list = props.lists.find(list => list.id === parseInt(props.match.params.id))
-  //
+  const lists = useSelector(function(state) {return state.lists})
+  const list = lists.find(list => list.id === parseInt(props.match.params.id))
   // return (
   //         <li>
   //             {list && list.name}
@@ -26,7 +27,7 @@ export default function List(props) {
 
   return (
           <li>
-              {props.list && props.list.name}
+              {list && list.name}
           </li>
         )
 }
