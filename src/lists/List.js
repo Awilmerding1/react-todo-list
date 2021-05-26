@@ -1,34 +1,29 @@
-import {useSelector} from 'react-redux'
-// class List extends React.Component {
-//
-//
-//
-//   render() {
-//
-//       return (
-//         <div>
-//             {this.props.list.name}
-//         </div>
-//       )
-//   }
-//
-// }
+import {useSelector, useDispatch} from 'react-redux'
+import ListForm from './ListForm'
+import deleteList from '../actions/deleteList'
 
 
 export default function List(props) {
   // const list = props.lists.find(list => list.id === parseInt(props.match.params.id))
   const lists = useSelector(function(state) {return state.lists})
   const list = lists.find(list => list.id === parseInt(props.match.params.id))
-  // return (
-  //         <li>
-  //             {list && list.name}
-  //         </li>
-  //       )
+
+  const dispatch = useDispatch()
+
+
+  const handleDelete = () => {
+    dispatch(deleteList(list.id))
+    props.history.push("/lists")
+  }
 
   return (
-          <li>
+        <>
+          <h1>
               {list && list.name}
-          </li>
+          </h1>
+          <button onClick={handleDelete}>Delete List</button>
+          <ListForm list={list}/>
+          </>
         )
 }
 

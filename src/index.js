@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
 // import {createBrowserHistory} from 'history'
-import {createStore} from 'redux'
+import {createStore, combineReducers} from 'redux'
 import listsReducer from './reducers/listsReducer'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {Provider} from 'react-redux'
 
+// function usersReducer(state = {}, action) {
+//   return state
+// }
+
 const initialState = {lists: [{id: 1, name: "Errands"}, {id: 2, name: "Health"}, {id: 3, name: "Work"}]}
+
+// const combinedReducer = combineReducers({lists: listsReducer, users: usersReducer})
+
 
 const store = createStore(listsReducer, initialState, composeWithDevTools())
 

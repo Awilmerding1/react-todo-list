@@ -11,12 +11,12 @@ class Lists extends Component {
 
 
   render() {
-
+      console.log("render")
       return (
 
         <>
           <ul>
-            {this.props.lists && this.props.lists.map((list, i) => <li><Link to={`/lists/${list.id}`} >{list.name}</Link></li> )}
+            {this.props.lists && this.props.lists.map((list, i) => <li key={list.id}><Link to={`/lists/${list.id}`} >{list.name}</Link></li> )}
           </ul>
         </>
       )
@@ -25,6 +25,7 @@ class Lists extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("mapStateToProps")
   return {lists: state.lists}
 }
 

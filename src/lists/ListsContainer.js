@@ -44,7 +44,7 @@ class ListsContainer extends Component {
               <Route exact path="/lists">
                 <Lists />
                 </Route>
-              <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} />}/>
+              <Route path='/lists/:id' render={(routerProps) => <List {...routerProps}/>}/>
             </Switch>
           </>
         )
