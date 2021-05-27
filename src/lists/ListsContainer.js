@@ -3,36 +3,14 @@ import Lists from './Lists'
 import List from './List'
 import ListForm from './ListForm'
 import {Route, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
+import fetchLists from '../actions/fetchLists'
 
 class ListsContainer extends Component {
 
-
-    // constructor() {
-    //   super()
-    //   this.state = {
-    //       lists: []
-    //     }
-    //   this.updateState = this.updateState.bind(this)
-    // }
-
-    // componentDidMount() {
-    //   fetch("http://localhost:3001/lists")
-    //   .then(function(response) {
-    //     return response.json()
-    //   })
-    //   .then((listsArray) => {
-    //     this.setState({lists: listsArray})
-    //   })
-    // }
-
-    //
-    // updateState(arg) {
-    //     this.setState((prevState, prevProps) => {
-    //       return {lists: [...prevState.lists, arg]}
-    //     })
-    //
-    // }
-
+    componentDidMount() {
+        this.props.fetchLists()
+    }
 
     render() {
         return (
@@ -56,7 +34,7 @@ class ListsContainer extends Component {
 // <Route path="/lists/new" render={(routerProps) => <ListForm sendData={this.updateState} {...routerProps}/>}/>
 
 
-export default ListsContainer
+export default connect(null, {fetchLists})(ListsContainer)
 
 // <ListForm sendData={this.updateState}/>
 // <Lists lists={this.state.lists}/>

@@ -3,21 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
 // import {createBrowserHistory} from 'history'
-import {createStore, combineReducers} from 'redux'
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
 import listsReducer from './reducers/listsReducer'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
 
 // function usersReducer(state = {}, action) {
 //   return state
 // }
 
-const initialState = {lists: [{id: 1, name: "Errands"}, {id: 2, name: "Health"}, {id: 3, name: "Work"}]}
+const initialState = {lists: []}
 
 // const combinedReducer = combineReducers({lists: listsReducer, users: usersReducer})
 
 
-const store = createStore(listsReducer, initialState, composeWithDevTools())
+const store = createStore(listsReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
 
 console.log(store)
 ReactDOM.render(
