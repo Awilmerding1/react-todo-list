@@ -10,6 +10,10 @@ export default function listsReducer(state = {lists: []}, action) {
         return {lists: editedListsArray}
       case "FETCH_LISTS":
         return {lists: action.payload}
+      case "ADD_ITEM":
+        const updatedList = state.lists.find(list => list.id === action.payload.listId) // first find list that todo is associated with
+        updatedList.todos = [...updatedList.todos, action.payload] // replace todos property on the list
+        return {lists: state.lists.map(list => list.id === updatedList.id ? updatedList : list)} //return new state with update list todos
       default:
         return state
   }

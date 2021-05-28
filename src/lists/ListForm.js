@@ -12,6 +12,13 @@ class ListForm extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps) { //bandaid solution
+    // debugger
+    if (prevProps.list === undefined) {
+      this.setState({...this.props.list})
+    }
+  }
+
   handleSubmit(e) {
     console.log("1 top of handleSubmit") //1
     e.preventDefault()

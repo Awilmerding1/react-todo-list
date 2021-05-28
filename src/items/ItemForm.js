@@ -1,17 +1,19 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
+import addItem from '../actions/addItem'
 
 class ItemForm extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {itemName: ""}
+    this.state = {content: ""}
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.sendData(this.state.itemName)
-    this.setState({itemName: ""})
+    const item = {...this.state, list_id: this.props.list.id}
+    this.props.addItem(item)
+    this.setState({content: ""})
   }
 
   handleChange(e) {
@@ -23,7 +25,7 @@ class ItemForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text" onChange={this.handleChange.bind(this)} value={this.state.itemName} name="itemName"/>
+        <input type="text" onChange={this.handleChange.bind(this)} value={this.state.content} name="content"/>
 
         <input type="submit"/>
       </form>
@@ -32,4 +34,4 @@ class ItemForm extends React.Component {
 
 }
 
-export default ItemForm
+export default connect(null, {addItem})(ItemForm)
