@@ -1,8 +1,9 @@
 import {useSelector, useDispatch} from 'react-redux'
-import ListForm from './ListForm'
+import EditListForm from './EditListForm'
 import deleteList from '../actions/deleteList'
 import ItemForm from '../items/ItemForm'
 import Item from '../items/Item'
+
 
 export default function List(props) {
 
@@ -24,7 +25,7 @@ export default function List(props) {
               {list && list.name}
           </h1>
           <button onClick={handleDelete}>Delete List</button>
-            <h3>Edit List</h3><ListForm list={list}/>
+            <h3>Edit List</h3><EditListForm list={list}/>
             <h3>Add Todo</h3><ItemForm list={list}/>
             <h3>All Todos</h3>
             {list && list.todos.map(todo => <Item key={todo.id} item={todo}/>)}

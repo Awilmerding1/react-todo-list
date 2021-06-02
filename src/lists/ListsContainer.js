@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Lists from './Lists'
 import List from './List'
-import ListForm from './ListForm'
+import NewListForm from './NewListForm'
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import fetchLists from '../actions/fetchLists'
@@ -17,7 +17,7 @@ class ListsContainer extends Component {
           <>
             <Switch>
               <Route path="/lists/new">
-                <ListForm />
+                <NewListForm />
                 </Route>
               <Route exact path="/lists">
                 <Lists />
